@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">  
+
+    <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid ">
+					<img src="{% static 'images/chef.jpg' %}" alt="" height="70px" >
+					<p class="dispaly-2 mt-3">TasteMe</p>
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="">
+					<ul class="navbar-nav ml-5" style="display:flex; justify-content:space-between;">
+						<li class="nav-item active mx-4 mt-3"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+						<li class="nav-item mx-4 mt-3 "><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
+						<li class="nav-item  mx-4 mt-3"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle mx-2 mt-3" href="#" id="dropdown-a" data-toggle="dropdown">staff</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="{% url 'staff_register' %}">register</a>
+								<a class="dropdown-item" href="{% url 'staff_login' %}">login</a>
+								<a class="dropdown-item" href="{% url 'add_item' %}">add_item</a>
+								
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+                            <a name="restaurant" class="nav-link dropdown-toggle mx-4 mt-3" href="#" data-toggle="dropdown">Restaurant</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                <a class="dropdown-item" href="{% url 'add_restaurant' %}">add restaurant</a>
+                                <a class="dropdown-item" href="{% url 'search_restaurant' %}">search restaurant</a>
+                                
+                            </div>
+                        </li> 
+
+						<li class="nav-item"><a class="nav-link mx-4 mt-3" href="{% url 'contact' %}">Contact</a></li>
+						<li>
+							 <div class="text-center d-flex mb-4" style="justify-content:center">
+								<form action="{% url 'menu' %}" method="POST" class="d-flex">
+									{% csrf_token %} 
+									<input type="text" style="border-radius: 0px;" placeholder="Search by restaurant.." class="form-control border  w-75 border-2 border-end-0 rounded-start" name="restaurant">
+									<button type="submit" class="bg-secondary border border-2 border-start-0 rounded-end text-white" style="width:50px;"><i class="fa fa-search "></i></button> 
+								</form>					</div></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+  <form action="{% url 'staff_login' %}" method="POST">
+    {% csrf_token %}
+    <div class="" style="display: flex;justify-content: center;">
+      <section class="w-75">
+          
+          <div class="px-1 mt-4 py-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+            <div class="container">
+              <h1 class="jombotron text-center" >LOGIN FORM</h1>
+  
+              <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0  " style="display:flex ;justify-content:center">
+                 {% include 'images/image.html' %}
+                </div>
+                <div class="col-lg-6 mb-3 mb-lg-0">
+                    <div class=" py-5">
+                      <form action="" method="POST">
+                       
+        
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                          <input type="text" id="form3Example3" name="name" class="form-control" placeholder="name"/>
+                        </div>
+        
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                          <input type="password" id="form3Example4" name="password" class="form-control" placeholder="Password"/>
+                        </div>
+        
+        
+                        <!-- Submit button -->
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary btn-block mb-2">
+                              Submit
+                            </button>
+                        </div>
+                        <div class="text-center">
+                          <p class="text-center" style="font-size: 14px;">don't you have an account?</p>
+                          <a style="text-decoration: none;" href="{% url 'staff_register' %}">sign in</a>
+                        </div>
+                       
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- Jumbotron -->
+        </section>
+  </div>
+  
+  </form>
+  
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<h3>About Us</h3>
+					<p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Opening hours</h3>
+					<p><span class="text-color">Monday: </span>Closed</p>
+					<p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Contact information</h3>
+					<p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+					<p class="lead"><a href="#">+01 2000 800 9999</a></p>
+					<p><a href="#"> info@admin.com</a></p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Subscribe</h3>
+					<div class="subscribe_form">
+						<form class="subscribe_form">
+							<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+							<button type="submit" class="submit">SUBSCRIBE</button>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+					<ul class="list-inline f-social">
+						<li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	
+		
+	</footer>
+	<!-- End Footer -->
+
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+	<script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+	<script src="{% static 'js/images-loded.min.js' %}"></script>
+	<script src="{% static 'js/isotope.min.js' %}"></script>
+	<script src="{% static 'js/baguetteBox.min.js' %}"></script>
+	<script src="{% static 'js/form-validator.min.js' %}"></script>
+    <script src="{% static 'js/contact-form-script.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

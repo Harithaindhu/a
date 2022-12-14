@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--
+	Resto by GetTemplates.co
+	URL: https://gettemplates.co
+-->
+<html lang="en">
+    {% load static %}
+
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TasteMe Restaurant - Responsive HTML5 Template</title>  
+        <meta name="description" content="Resto">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- External CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">    
+        <!-- Site CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/select2/select2.min.css' %}">
+        <link rel="stylesheet" href="{% static 'vendor/owlcarousel/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/brands.css">
+    
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Josefin+Sans:300,400,700">
+        <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    
+        <!-- Modernizr JS for IE8 support of HTML5 elements and media queries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    
+    </head>
+<body>
+    <style>
+        .a{
+            font-size: 24px;
+            background-color: #d0a772;
+        }
+        .a:hover{
+           border: 1px solid #f5d5a5;
+           transform: scale(1.2,1.2);
+           box-shadow: 5px 5px 6px #413119;
+           text-shadow:3px 3px 2px black;
+        }
+        .b:hover{
+            padding: 10px;
+            transform: scale(1.1,1.1);
+            background-color: #d5c3ab;
+            box-shadow: 5px 5px 6px #d0a772;
+
+        }
+    </style>
+    <header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid ">
+					<img class="ml-4" src="{% static 'images/chef.jpg' %}" alt="" height="70px" >
+					<p class="dispaly-2 mt-3">TasteMe</p>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="">
+					<ul class="navbar-nav ml-5" style="display:flex; justify-content:space-between;">
+						<li class="nav-item active mx-4 mt-3"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+						<li class="nav-item mx-4 mt-3 "><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
+						<li class="nav-item  mx-4 mt-3"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle mx-2 mt-3" href="#" id="dropdown-a" data-toggle="dropdown">staff</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="{% url 'staff_register' %}">register</a>
+								<a class="dropdown-item" href="{% url 'staff_login' %}">login</a>
+								<a class="dropdown-item" href="{% url 'add_item' %}">add_item</a>
+								
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+                            <a name="restaurant" class="nav-link dropdown-toggle mx-4 mt-3" href="#" data-toggle="dropdown">Restaurant</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                <a class="dropdown-item" href="{% url 'add_restaurant' %}">add restaurant</a>
+                                <a class="dropdown-item" href="{% url 'search_restaurant' %}">search restaurant</a>
+                                
+                            </div>
+                        </li> 
+
+						<li class="nav-item"><a class="nav-link mx-4 mt-3" href="{% url 'contact' %}">Contact</a></li>
+						<li>
+							 <div class="text-center d-flex mb-4" style="justify-content:center">
+                                <form action="{% url 'menu' %}" method="POST" class="d-flex">
+									{% csrf_token %} 
+									<input type="text" style="border-radius: 0px;" placeholder="Search by restaurant.." class="form-control border  w-75 border-2 border-end-0 rounded-start" name="restaurant">
+									<button type="submit" class="bg-secondary border border-2 border-start-0 rounded-end text-white" style="width:50px;"><i class="fa fa-search "></i></button> 
+								</form>					</div></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<img src="{% static 'images/slider-02.jpg' %}" alt="" class="container-fluid" height="400px">
+
+<form action="{% url 'customer' %}" method="POST">
+    {% csrf_token %}
+    <section id="gtco-menu" class="section-padding">
+        <div class="container">
+            <div class="section-content">
+                    <div class="col-md-12 text-center my-4">
+                            <h2 class="display-4" style="text-shadow:5px 5px 4px grey;">
+                                Our Menu
+                            </h2>
+                </div>
+                <div class="d-flex" style="justify-content: space-between;">
+                    <h5 class="a text-center mb-5  px-5 pt-2 pb-1" ><a class=" text-white" href="{% url 'meals' %}" name="MEALS" value="">MEALS</a></h5>
+                    <h5 class="a text-center mb-5 px-5 pt-2 pb-1" ><a class=" text-white" href="{% url 'chicken' %}" name="CHICKEN ITEMS" value="">CHICKEN ITEMS</a></h5>
+                    <h5 class="a text-center mb-5 px-5 pt-2 pb-1"><a class=" text-white" href="{% url 'juice' %}" name="JUICES & DESSERTS" value="">JUICES & DESSERTS</a></h5>
+                </div>
+                <div class="row ">
+                    
+                    {% for i in item %}
+                    <div class="col-lg-4 menu-wrap">
+                        <div class="heading-menu">
+                            <h3 class="text-center mb-5"></h3>
+                        </div>
+                        <div class="b menus d-flex align-items-center">
+                            <div class="menu-img rounded-circle">
+                                <img class="rounded-circle" src="{{i.image.url}}" alt="" height="70px" width="70px">
+                            </div>
+                            <div class="">
+                                <div class="row align-items-start">
+                                    <div class="col-8 " style="border-radius: 20px;">
+                                        <h5 name="item_name" style="padding-left:25px; font-size:25px;text-shadow:1px 1px 1px gray;" >{{i.name}}</h5>
+                                    </div>
+ 
+                                </div>
+                                <div class="mt-1 mx-4 " style="width:260px;">
+                                    <p class="text-muted menu-price float-left" name="price"  style="margin-right:28px;font-size:21px;">{{i.price}}Rs</p>
+                                    <button class="ml-5" name="nam" value="{{i.name}}" style="font-size:20px;margin-right:20px;border-radius: 20px; border:1px black solid;background-color: rgb(231, 245, 245);">buy</button>
+                                </div>	
+                            </div>
+                        </div>
+                       
+                    </div>
+                    {% endfor %}
+    
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<!-- End of menu Section -->		
+<footer class="footer-area bg-f">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <h3>About Us</h3>
+                <p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h3>Opening hours</h3>
+                <p><span class="text-color">Monday: </span>Closed</p>
+                <p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+                <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+                <p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h3>Contact information</h3>
+                <p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+                <p class="lead"><a href="#">+01 2000 800 9999</a></p>
+                <p><a href="#"> info@admin.com</a></p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h3>Subscribe</h3>
+                <div class="subscribe_form">
+                    <form class="subscribe_form">
+                        <input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+                        <button type="submit" class="submit">SUBSCRIBE</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+                <ul class="list-inline f-social">
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+    
+</footer>	
+
+
+
+<!-- External JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="{% static 'vendor/bootstrap/popper.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/select2/select2.min.js' %} "></script>
+<script src="{% static 'vendor/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="https://cdn.rawgit.com/noelboss/featherlight/1.7.13/release/featherlight.min.js"></script>
+<script src="{% static 'vendor/stellar/jquery.stellar.js' %}" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Main JS -->
+<script src="{% static 'js/app.min.js' %} "></script>
+</body>
+</html>
+
+
+

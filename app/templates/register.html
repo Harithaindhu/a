@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">  
+
+    <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid ">
+					<img src="{% static 'images/chef.jpg' %}" alt="" height="70px" >
+					<p class="dispaly-2 mt-3">TasteMe</p>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="">
+					<ul class="navbar-nav ml-5" style="display:flex; justify-content:space-between;">
+						<li class="nav-item active mx-4 mt-3"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+						<li class="nav-item mx-4 mt-3 "><a class="nav-link" href="{% url 'menu' %}">Menu</a></li>
+						<li class="nav-item  mx-4 mt-3"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle mx-2 mt-3" href="#" id="dropdown-a" data-toggle="dropdown">staff</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="{% url 'staff_register' %}">register</a>
+								<a class="dropdown-item" href="{% url 'staff_login' %}">login</a>
+								<a class="dropdown-item" href="{% url 'add_item' %}">add_item</a>
+								
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+                            <a name="restaurant" class="nav-link dropdown-toggle mx-4 mt-3" href="#" data-toggle="dropdown">Restaurant</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                <a class="dropdown-item" href="{% url 'add_restaurant' %}">add restaurant</a>
+                                <a class="dropdown-item" href="{% url 'search_restaurant' %}">search restaurant</a>
+                                
+                            </div>
+                        </li> 
+
+						<li class="nav-item"><a class="nav-link mx-4 mt-3" href="{% url 'contact' %}">Contact</a></li>
+						<li>
+							 <div class="text-center d-flex mb-4" style="justify-content:center">
+								<form action="{% url 'menu' %}" method="POST" class="d-flex">
+									{% csrf_token %} 
+									<input type="text" style="border-radius: 0px;" placeholder="Search by restaurant.." class="form-control border  w-75 border-2 border-end-0 rounded-start" name="restaurant">
+									<button type="submit" class="bg-secondary border border-2 border-start-0 rounded-end text-white" style="width:50px;"><i class="fa fa-search "></i></button> 
+								</form>					</div></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+ <form action="" method="POST">
+  {% csrf_token %} 
+  <section class="vh-100 ">
+    <div class="container h-100 w-75 my-4 ">
+      
+              <div class="row justify-content-center border ">
+                <h1 class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign Up Here</h1>
+
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 col-6">
+  
+  
+                  <form class=" mx-1 mx-md-4 ">
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="form3Example1c" class="form-control" name="staff_name" placeholder="Your Name"/>
+                      </div>
+                    </div>
+
+					<div class="d-flex flex-row align-items-center mb-4 " >
+						<div id="pos1" class="form-outline flex-fill mb-0 " style="width:50%;">
+							<select name="position" id="pos" onchange="fun()" class=" form-control" >
+								<option name="position" value="staff">staff</option>
+								<option  name="position" value="admin">admin</option>
+							</select>
+						</div>
+							<div id="res" class="form-outline flex-fill mb-0 " style="margin-left:10px;">
+							  <input name="restaurant" type="text" id="restaurant"   class="form-control" placeholder="Restaurant"/>
+							</div>
+					  </div>
+
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input name="address" type="text"  class="form-control" placeholder="address"/>
+                      </div>
+                    </div>
+
+					
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input name="phone_no" type="number"  class="form-control" placeholder="phone_no"/>
+                      </div>
+                    </div>
+
+                      <div class="d-flex flex-row  align-items-center mb-4 " >
+                        <div class="form-outline flex-fill mb-0 " >
+                          <input name="password" type="password"  class="form-control" placeholder="password"/>
+                        </div>
+                      </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password"  class="form-control" placeholder="Re enter password"/>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex justify-content-center mx-4 mb-4 mb-lg-4 ">
+                      <a href="#">
+                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+
+                      </a>
+                    </div>
+  
+                  </form>
+  
+                </div>
+                <div class="col-md-10 col-6 col-lg-6 col-xl-5 d-flex align-items-center justify-content-center order-1 order-lg-2 ">
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJsAAAFECAMAAAAHoLzwAAABAlBMVEX///8AAAD9tpImEgv/upX7g2D/uZT/v5mdnZ3/vJfS0tLHx8eAgIC42emampqXl5e9vb23t7elpaXLy8uEhISxsbHq6urk5OSLi4ttbW1zc3P29vZmZmbc3NypqanBwcFBQUFPT09XV1c3NzcvLy9fX19GRkYmJiYbGxuQkJAiEAkfHx8qKioUFBRTU1NDQ0PZoIDprIqBYU4RAAAaDAeTb1mzhmv8lXFkTT6ke2PSnH3E3+xGOC0qIxzAj3JWQjXg7fR4XEklHhk7Lyaac1wCCwquf2ZBLh8QHSJPPjL8rYn7h2T8on5oSDU2JRf7l3QnFwcAAAvW6fJuZmGSoKdUOCf8k1bgAAAYKElEQVR4nO1dCXfiSJImPLSEQAsIJNDBDcLGgG1s47bdLrsoH9VV3T09U7P7///KRqZuKTmMlPjt24o3PWXLCfoUd0QeyuV+0k/6ST/pJ/2foWZJqZXLtWrR+mgkEWpo5jGEyFA+GpFLVmeIcK5P/+HTNf5uNj4aF7LMBLj6R4JOAeSPRmYAnCaRuejaHwltshYZoSuofhiy+kZkVO8+CpzJ0rO4XIsfgaw538I0l3Mf4Oy07UyjBK2DQ5N3YZoD7tBS7cOOyNBYewdFZo12h4aMO6SXs07eAw29nKkcyiDeCc2Nrs2DYJvuBu00bCwYv4wD8K63G7QruI5CBf4G29oJ2jUjml1DiS+0wi7QkEfXjMvXfC22uFucWhMyrk54YtslUEU1LSJc6PKDJm+XKMoz8svtZeh3sLlBa2+X6GnA2dMrgNWFKIU+dArcsE23SvTakycB9u0mLwlH0irMuDonaPpWiV67PEIX8nC3EIUjJOE+jK3MB9p2iTrQUMm+vCzE/JFL4jywDV7Z3Mk2iVLfgSxb3QfAkPLLgHHXr1ygrZOoz0xERf5bHknCUZiEi+CTfIyBIVF6xVMxdGuElnnpKE5iyOEBj3xklpAodWSnnm+9ght4vvOQCZIYYJRCLo6HoXYSEr2mV+Du4doBupDyvpqJ90/wvPBEKzyGsGnZYwvEcu3eiF6BW/EWHGghJZNuYXm/gsAgAn2AWubQyqEnvw4gwhdJesEf4DUMLf/py0ISpMtA4Z79JwM9c2wB207B/eeU4FsIRGAwPwpBE58fqKUGbMsHCgdq1tC0kIdyfiSu7BQeyf0B5mGuYSCIG2pI4bJvfI0CI3U4SLkHlyJh06eIQAmUhBdZBNjMjKE1whHx1EMIz6LDpkUSTIwkXycy55sWduyeYK/B9f9bkSFvH654YdPj6oZsQKcL+e2oXL75xpC5LZgxbOT/MDo97sAxh/J3PrYJP2xX1w7b4EHcRZguBYYKnYyxyVFs1yTf2BkXxXbhqilA1hMPhUhUwLz7FO53ZxqhhRPYlm+3WQf7bgQbZh7wksyEYpSXwmkcFjSncCthOnCTcZO1EcYGTw8Y4bdCWz7fXgR2jNhgRT8kfs24ZAgy/iuMoZfPW7kmPZBEMxC8iMWNKEgLCU22ny021WfcNfJM2goNaytCt/5AxLbI48XLvPD4e7bYiiFsYSvIS57YonCFG4rt2Re98LgQ8vC2ID/9O1tsuVdPqKdw4WMTjl5WbxSUcHEbBbeg2C4DhROE/NuJSGEPM8YW5JawCBCQ+3+TKLZY/JLuCNuil55eyJj8MusS1fKz6gAb1p2EaOSSQux0kCxuHlHg378L3nUJ7iUKMfPS3qa1J6AL8bFhVUCIckP8dBN3xkL++x+/IP0aiHklEavIvLXaRAf1dvG4gjV8u10mkpLvvzj0h4t1CZcSseCsoRGNm4uCIEkhfcvPfT8hXV7GHUv+DxfbL386bP72IJGBPDoixpNESuJwsZe/u7yRXB6u4tgkD9ovf9NP5GndJXJpXRb+koSLb0+B0qNb8GOmtErwTfjVw/bdfZIjmixxgJbr/I90BMsXePQy8T9//fXP746WoRYxEk1XqH+G68N/Vnhgq4N480kUH94onPyfrrwouxZwx4hj0ve/EX44BcVn4DM7Axd3T5InvO9hRZcuv7ETE0EQIuwU/5V1Su6S+dcFSPk7GiQDZfqD+KzX3UoHjBZ8oGEWd7HwopPwt4ftV4FkRMttCR3hn7Dg1orOTYA4KFfrw0aIgJeSlGRdcEW4fxPFReZFVoiGTyJ6CzfloFb4h+Mf8hdzuI1HLUEKrpD49pVDDylEr7ci8siJDBIGcr9XJIj3l3fxaP8cJCd5aJcKfOfGrd+/5sXbJ5ZyCflIL0larGDlQxNusk4oWdS7WuSd1tYGyosXt/B0Ebg88SsXlxsnGd5uEoVziGdCXlzcfYGVOyvj0OJAq2vq/74iDYcILe+PRErC4n75DJ/uolYrXfKb/4uRYjtdwYCeSCI3d5YzPt0txLjMD7lEpAFvkfgpSYv7+8fH+/vFkSgllFFa9g4HjRSFj7HgLgjx4Bli22GXJClwsWtnUFplXMlvpc6u4NBZH2ZNTYjKO4IT/5X5lMJ2quwETloeIiQkqOZUwxspf394iVLS4GZb3oYVM7ecbTOV4GUzOPGr2f0gxuXacLtJrOIlkJT0g9blW8f/Wqy1iPwLGDhmMPogzmFi8rhOrvklVbY28EzGN5ENmEQmBUsueVU8ZgDTD1gf3TiBsnUOL1F0grhYwkoSr50Z8BnJTw6+Y6BN9nigvf4OSy+ZJMnl2wM83+T95ofpZE+HdSZVek/yU30MTzcLzC4Xj5hczl8IUvG64AyruTtVsp7X3UQV55bOPoCO09YEuHWTy/yNV8XX/X00B9M6V1Tegrsi/JNkl6IkSXn8T5T8zQuNYJPPgbRu7N/Q9a3WAN5ECe3gZrl6+vrwKcjEQzuQZgdwxFZoz5O/HqUL8PYG8DqFXusEpgAVB0kvvD+Ku1yb4bsdB9erv0NPVWGsnwGMct0R0MLUDI8Gu8+Vd8XIzUKsqEIL9JOhjh55SkyhfkJcxyQ8uGQYc47QqlFowfLTAiKB2Vw1AE5UJwGpof5r4cFKLjfllwrXIE7uHrYKUX8ZZJlYpOq2xBswLoXHGuQSL6UrJKC5KysKlFNtUNEKTFX2bWQcHZwjzpAPNCsJzXEjius0eljh27oBwVqQYWQseYAeF0dXh0FzlMA2IfxyA6YCQIzhZOjHqEZkLFme1+aQcFpzIqlGAhveCvw+FnLsDGZ63/A/FRlKIQ+yZ9ywVSNPrCcZpwdztuWTAfTMHqzBRtfRZs84DXW432LrXKhXBKSr1LN9hW9GR1JU51l3f4lzahBlbiWghZseFTBsVe/7wT7mqun+j3rGptqhDt0g2WSSbyGXpU1VVcZA5c1HatGRjmJOiYupqyTW9ivpN/k6q4maRChJbLMQthNVVk8APNao0ZFjelGBXHMKplYqlmp9kFOqX9W91wif2EiCCybilbmqDjACeEL1nO/MmBRqBXnkeBvoBopQSZsUD927d46pE0uQLxjEhmFrpHqW6vzZX3ZcgQH5p/CK8IkjtpQRmKFkZg9q+kkkomC4OEyKPGygoxrJQ1eojpkOwahVu9WaAdM6fQwLzi3MV2aU5RakUjnVTzeGNZbCBUFKeUW29VswcEzS4XGjqPbnMO/raDQ9WuWYKEerrnQpqpNUK+OCIq7QZyoceJPxyvwc2QZzfUa1SKZ/C39Vh0pwUMj9+OzZgGrk9qdS8O1tYGYjvsoRRg16YJoOomGAzbI+03/oQHyU/3LoM8nnU2CzQwkhOjOGh/NVjuSeBpzrc8fr0b8gpyiMH3TEjKy7xFDiQPvNh7snhYPSWSEehzyiQsSaZjAF4kbIvKQTFc5cbM4XVAYEjeVic75///3uSpjnFZttDOAs9kSenoGNHnfUmnvSbznYPjtfUASqGRaF5qicuX+iPgj3qYjurcFGom0denCso8c1ZfzVppdlB5v3DSiFrovNhdvp7Y0tMifVQHH01mA7IVw5JrBgrKonNfchKhTIZ+8bzju5zjj32VU2Qu29jaEa/SQiHaxjXIto2JB6X1k9P3O9dIFi879g0iL/++xLlHznvu3NVlQbjpVYQRwmDe2E+I8+RnyAjnsxig0FqqoUm39pvq8xxKo2u+x6VCZVPbbJhj93WSVAfvO/oAE5Y5L7Eb7U2rPzWowpgywz8vIQEW0jbBuDp5Zdgu1H6GHbJCyEsVX2nAFWY8vWCna0kRAntU/ZpsLIi231GLZh9Uwj2IJL1el+2OJr1LWh1xlkExrKuSpj7mt72IoE2+fgG4zyWIli29NQG/GqqHu8GRsVq4zck/vur21iCyFsE7MXw2btV3p1RrEL6Hw3yhTTMmSbOp/qJ2FsoZtrZ71qFFtuv2l9O25CWCVttAV0cFSkZ741t0lcCGHrjs6VOLa9NuAn+j6IbYMPoWSTmsH0i0WKLfQNxelAibqV3HCf9DLuQXbCBqY6orm5Q5iY/hbG1oZBh4g5hK2/z2bByiB+BfUtWT7HaKpjCuf/1k1ga1UIK0PYBvusDDpPPFB1Fu+qMWgErSCwYZX1I6xvbVCd1CS4ZO+DLWlAmNAcb0DlkRwkBGhNn8M+pDjvDAgrU2JjtC4wh9gBGuhBp44kumGjVEZEi3+Ese2jb3pynXW9uxO2fuhn/FRYuco28bWfw9im3VxTHf37XQ2mYXLDl+mlF7tTKWoMmHVgILTC2KBowF83j++aWGIkfe8FBrTRb0WA5CrjiD9uAzwtJCG/eEeSmfRuqIH9rVgS1I5+abGu4aUfgX1M4IbOwUp/7d63qSXXOplycTuWOEU2yhAPdDLFovU3j28WwOXNQjwShIvdExJGPooCmb0fXMikKmBZjUbz+Cy4NBuadr/3H7gXRNTlwaS6Sy2d3HJAatXuO0DN+6Zeq5ag591Oh6LVaLbbxdncbbI05seqbBot+fgln1+Ou2RGDIxthz4xmgE94iR3Y9zIVhFVqVRHKtpgECga6p7lYCtiVCbXUIF1mWAzB8+isIB2u17S1DPk9ca8KWkKTiMuPuGWpLFZ0RSkarXbJeiK7a6J2tAGDPJIzWK9VFU0eYqqX5tVdOSb2TJVeJTEr5N2qarVyhNzuPFYj855/IrsDJ9uwjW19Q6SpmkUG0VW7yoa5iMN6J1Exo7d2X6YT2e9QQ/B3coUW0WXMckar8cmJ1wh9LubGTe3JzVCDjbkWkc3+vRRjonyQlnpIlQi0nq9262gYLS5LhutQb83HFHcZrfYdbHZG9LhXiIqNEjmYyqN5LSWg0wuUKLYFE23p0Tt5IpWajcbI4U0Ga2Gq2/1UrdaA/KcFdXRN7WgaTXaS1E8bOtdMXPNSaMqM0T69LhYLO5QSC1DJWzTCgZmKwO1U6emgNQeYq40VxqNhoetqnRQfUtQcW1BrdSUerPRrkyhQrAZkEgeQ9jW+Rmr2IsE1duFSFbR5qXH1fMzxqiaMYeh2elWfVsotpvjDpEEMQWfbxpiq2Oqp/rYkMH4F7mA9tGCDXsbm+udtIXcbir62EfmLPqR6PJtZN+x2VG0iJ3Wqz3Mg+yhoRdzjg/pYIqHRVzDxm+xw9iQobUCabVvmKLeMO+kusGsAcvVvY/sfvX0eP+4hN5EC+wUsRUVmmiivilqZQAtC7FVSWfiv39z0joFC+0Q37qaTFzoprjfXT8p4Wmi/CR6a9vJrtgxYeTvcsezUwcbRnbZOdmXCDRnzcxGu20gyz5j7kuCqjWBVqBvxUof5gMYbwwMWsK9+ag9job38i5ej9VyYT6uuXYaYDOc2EmgkByzCIitNINztVMt1RV9CCcGlWlZUzrqkERUdVsml3S9HhnuJ7Wr0MJBIb+Cs9a8Vo5jK1VJoJhUyPVChXQjGkTfNHlAW/w9WyZxwWjZfTTtnoEOcrD1oAClt+4vnkgHL5EVl9LFM7wWQr7Xs4WiNjFbg7N+v39mm5Wi5dkpxq0OwpVbZ0O0+2nf0IlzRB+yNcWsr+ugNFkidVYNotINB6Ze0BwrpdConbbbzSbxbVbIiWgF1RgQVOQzaqFG3HbFmO10HlsLTGbQ6LrnV7WTZ3Xk85fOHBqMxrYh65UCBggaU12qo1crTORW30lmhv2WqZdrTjgp6K1jmO8429vGCn6ShFdw/XX1mrFOVUTBGnh3wz4bD5lJwcmo1x+0TAKcgCojEVxGD+C88J6utIKZXkuLPorqZvVk82eU6AY78fEL2C4vUPXw7hWXyu4FSuWyi6o2MQcz0l/fo5lU148hMq1jumZaRu8W2Ygi3NGDzBDdVxjrPgoPR4gc4GXdtM9R315btRTLlEiS2vGORpc9vl2tVpd3oS1P+SXMyZpLQRAvVnjL0XnfbhmkjalPJh7zJjqJ43afGsF8oGupt/tYVfUcv+vcLFTbE9eQnAnB54sAnbS4eYAvZGOUJOZvHtamece9llxQ6lkeZN6oY4Cm+v3aN9WJ14f79oiipfhE+HYh3ZCNUd9Wy7tPCUwmSd8yBMQgKzEzc3t3kUflu5Mu4flRFBf3N8tbBr8OsQGPOaP1abUEtI4lVsK3nz7dfmEM4brX06W1ikS59rT2rwfYE8VcpLcT8cfW3hsb/1cMsJbW7EYcj3x1acvEzAbib6hbm/hI7Mkb/ttR15TOYZqzli3BAYxhB7bJawbxXoy/iwvp5s6Y13mvxV8jrhh/2AaT/SmX78bWZy7MhAPsnNk28UzZw5Z81uc3JWlrr5yk/ezWK3dsFpTYqu4SPY5cZf6J+64Z0glubpgap71/VndzxH+/fdc5p73EXN4I7kRMUuF6yU5o9tTxE7EuC557wnxsvVeryOggZ096ePlmXY+XyG5EDy/MHHWIopUP8O4UM5ZcN7QI+1x9D/yg1xzo8HchzHnipma6XsP3r06+ogZxqsTnJPAIHa9bsNZWyrIZuInyWI4EUMakZ+a0747SxiGw7bkIMeXa8d1usa9357/lfsPMwxbiv5cypNLl9wUh3m9MwUgZzDzY6DK03QW114Ktd1FkjUFJPibLGLX2Ljq414Ktd5Ee33FQrJmk9hrZakEptdukkUW74V1Nd3eM5yzKMYN7gcpenN4oKhV5EK0Px/Q9i1Z9MnQiGf9gPyhsGUAnrig1uxOybsHuOI4twfHMabjlfQWNZrHbqZgDMsk9bVW6gcOtcS/sQ57AslumKcsmmZBqDcYzb63AfNxSGS/2TLEdYFdsgQe1yAoKQqo+Kdc6WrVeRFNY+0kl3WasXbDtHRXrPDeKE0qsld6duCdJ+4fTFFs8dqQUG0i5J3DV/RV6/+xqR0rhCLgnl2kqOd7JpZyiUcX7kL80yQTvc3XGKZIw3onvKMW7dIecZz/SPHuPwyuXwpRGn/vbUr+UlMZHtTi9U86lFKEe03m+B5ulCPXcC4ZUeY7Kd4KhlOalnBW+nUstTfORczGT6us7G9Y6Z0B6GpXR4vsLs6UUW87332q6I7XSuHbOhVaqyRXOhdZxmlSCM7ZU6SHnIjBVWp0q4G2nVKUS3wI1VRrCuUBN9+R8C9R0lsYXWymdxnAtnpV0c6Bci+daukyC66xROV2rm2thn6YbkuNc2Mfn6t9JJzwLeztd9ZumYbGVUq4/4dp0mKUTyjnPpTUpDY3rLGVKB2XzbIikDIgtjjOoaYM1z2ZNuvQNXTfHF22kTap5NpLSFko8G0kp0zeus+LVlA2NCccmV9pZ7QJHbIWz7WM2Ec8GXCWlvnQ47udJa2c8m4Opum+5lB3ZLZR2RZE22z5mXxqkzHEUjo3LtLlhNc0MwBaapVxd1+XYVE3VtUQqccT2mrL2zfp08jClrct5NnzT9jP+32LT0+XkPLFVj2HcSVHO8J1gaFZGALKyJz7uK+Asun3dLtffKV9LsfnveQ72P52pWnEnFjaq9AxC/u9ajB+/SQ8GqzeZbLTapY5/8OsB3gdlM3Y+eTB7Zy2TkmwMxsP4n/m/5qufxISkWeR0o1qhPNFVVWXvPOa+MHrNruJoGsDe0JiyFNqB2OKMhgz22fS9D8IWnXL5oA2oa3Y8x8yUOYbvWoL12GKj2ErJGxv7QId4JcA+m543NrYJ9mKj2Ocj88bG3gMe78KwX77BG5vGvGs8HLGPy+C94bnDvGt8MqnOHMV7RyD7zIF45co+I4D3jkD29vT47CPb0/DGxrbAxF2Zo3jvYmenSAktP2eN4v2i1j4TW2IYc/s9752UiYyRULKBzjQZ3sfpMNmWbDIz3eCHYEtWKUwHx3sHKhNbsqHJdHC8j3RgYmMo+W6PkCmxnSojGLEyOM6bBNjYGANZToT3zl1WrGfNBZUZ43jHrOT7Y9n5BSMH5c02pm9g5WWM3J3z5n927sO6KcP5cq4BT5J3BLa/Zx2kxNP3NtecPsS6J/OQJ17AGpO1b61g5RfMioFPt6ax7swhQix9Y2smj5nnjS83YE7ZrjuNLfM1cJuPfWMvEVg3OuttgZtPjmSnF+vHT7Ndo7f+RvPymopY23Bs4jzLyoF9n5bW2Vg6tQt9APZLaTLExrQFe5ceQknuskqMDNsPjMg92lkurNohw/ZDwludvUdjGL2ALNs27X7oi4eFdz52InvJeFVBo9YaktPh1eo+zxyrV/lPNbyHrMg5gJy3Pr+fOv5petyPI9qDrGq5UqjyPxTxJ/2kn/STflJK+l+7sxzH9oGVogAAAABJRU5ErkJggg==" alt="" class="mb-5" height="400px">
+                </div>
+              </div>
+            </div>
+  </section>
+  
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<h3>About Us</h3>
+					<p>Integer cursus scelerisque ipsum id efficitur. Donec a dui fringilla, gravida lorem ac, semper magna. Aenean rhoncus ac lectus a interdum. Vivamus semper posuere dui, at ornare turpis ultrices sit amet. Nulla cursus lorem ut nisi porta, ac eleifend arcu ultrices.</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Opening hours</h3>
+					<p><span class="text-color">Monday: </span>Closed</p>
+					<p><span class="text-color">Tue-Wed :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Contact information</h3>
+					<p class="lead">Ipsum Street, Lorem Tower, MO, Columbia, 508000</p>
+					<p class="lead"><a href="#">+01 2000 800 9999</a></p>
+					<p><a href="#"> info@admin.com</a></p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Subscribe</h3>
+					<div class="subscribe_form">
+						<form class="subscribe_form">
+							<input name="EMAIL" id="subs-email" class="form_input" placeholder="Email Address..." type="email">
+							<button type="submit" class="submit">SUBSCRIBE</button>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+					<ul class="list-inline f-social">
+						<li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	
+		
+	</footer>
+	<!-- End Footer -->
+ </form>
+
+ <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+ <!-- ALL JS FILES -->
+ <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+ <script src="{% static 'js/popper.min.js' %}"></script>
+ <script src="{% static 'js/bootstrap.min.js' %}"></script>
+ <!-- ALL PLUGINS -->
+ <script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+ <script src="{% static 'js/images-loded.min.js' %}"></script>
+ <script src="{% static 'js/isotope.min.js' %}"></script>
+ <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+ <script src="{% static 'js/form-validator.min.js' %}"></script>
+ <script src="{% static 'js/contact-form-script.js' %}"></script>
+ <script src="{% static 'js/custom.js' %}"></script>
+ <script>
+	function fun(){
+		val=document.getElementById('pos').value;
+		if(val=='admin'){
+			document.getElementById('restaurant').style.display='none';
+			document.getElementById('pos1').style.width="100%";
+			document.getElementById('res').style.marginLeft="0%";
+		}
+	}
+ </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+from django.urls import path
+from .import views
+
+urlpatterns = [
+    # path('',views.front,name='front'),
+    path('',views.home,name='home'),
+    path('index',views.index,name='index'),
+    path('search',views.search,name='search'),
+    path('staff_login',views.staff_login,name='staff_login'),
+    path('staff_register',views.staff_register,name='staff_register'),
+    path('menu',views.menu,name='menu'),
+    path('add_item',views.add_item,name="add_item"),
+    path('meals',views.meals,name="meals"),
+    path('chicken',views.chicken,name="chicken"),
+    path('juice',views.juice,name="juice"),
+    path('customer',views.customer,name="customer"),
+    path('customer_save',views.customer_save,name="customer_save"),
+    path('customer_det',views.customer_det,name="customer_det"),
+    path('about',views.about,name="about"),
+    path('contact',views.contact,name="contact"),
+    path('delete',views.delete,name="delete"),
+    path('customer_view',views.customer_view,name="customer_view"),
+    path('self_del',views.self_del,name="self_del"),
+    path('review',views.review,name="review"),
+    path('main',views.main,name="main"),
+    path('search_food',views.search_food,name="search_food"),
+    path('food_menu',views.food_menu,name="food_menu"),
+    path('add_restaurant',views.add_restaurant,name="add_restaurant"),
+    path('search_restaurant',views.search_restaurant,name="search_restaurant"),
+]
